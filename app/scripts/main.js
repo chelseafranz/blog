@@ -1,1 +1,1 @@
-console.log('The Iron Yard Rocks');
+Parse.initialize("WrDfLsxuougObGc7QHG1HAbWvDZG694tdg8gVQuS", "rMzyC9RkZOw29M69bLXSjz5feWM8TVVUuvgaPHM0");
