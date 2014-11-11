@@ -6,7 +6,7 @@
     idAttribute: 'objectId',
 
     events: {
-      'submit #login': 'loginUser'
+      'submit #userloginForm': 'loginUser'
     },
 
     template:$('#loginTemp').html(),
