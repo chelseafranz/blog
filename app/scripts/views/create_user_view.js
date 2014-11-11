@@ -25,17 +25,22 @@
         a.preventDefault();
 
         var user = new Parse.User({
+          username: $('#userName').val(),
+          password: $('#password').val(),
+          email: $('#email').val(),
+          name: $('#firstName').val()
+        });
 
-         user.set("userName", '');
-         user.set("password", '');
-         user.set("email", '');
 
          user.signUp(null, {
            success: function(user){
              console.log('success');
 
            },
-         });
+           error: function (user, error) {
+             console.log("couldn't succeed because" + error.message);
+           }
+         })
 
           },
 
