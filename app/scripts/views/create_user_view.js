@@ -38,7 +38,7 @@
 
            },
            error: function (user, error) {
-             console.log("couldn't succeed because" + error.message);
+             alert("Fail. " + error.message);
            }
          })
 

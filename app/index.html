@@ -25,7 +25,11 @@
 
     <div class="hero-unit">
       <a href="#/create"><button id="newUserPage">New User</button></a>
+      <a href ="#loginUser"><button id="loginUserPage">Log In</button></a>
       <div id="createUserForm">
+
+      </div>
+      <div id="loginForm">
 
       </div>
     </div>
@@ -37,6 +41,13 @@
       <input type="text" id="email" placeholder="Please Enter Email"/>
       <input type="text" id="firstName" placeholder="Please enter name"/>
       <button id="createBTN">Create New User</button>
+      </form>
+    </script>
+
+    <script type="text/template" id="loginTemp">
+      <form id="loginForm">
+        <input type="text" id="userName" placeholder="User Name"/>
+        <input type="password" id="password" placeholder="Password"/>
       </form>
     </script>
 
