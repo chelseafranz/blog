@@ -3,23 +3,25 @@
   App.Routers.AppRouter = Parse.Router.extend({
 
     routes: {
-      '': 'home',
+      '': 'homeView',
       'create': 'createUser',
-      'login': 'loginUser',
+      'loginUser': 'loginUser'
     },
 
-    home: function(){
-      $('createUserForm').empty();
-      $('loginForm').empty();
+    homeView: function(){
+    new App.Views.homeView();
+ 
 
     },
     createUser: function (newUser){
+
       new App.Views.createUser();
 
     },
 
-    userLogin: function (loginUser){
-      new App.Views.LoginUser();
-    },
+    loginUser: function (user){
+
+     new App.Views.loginUser();
+    }
   })
 }());

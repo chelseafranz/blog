@@ -16,7 +16,6 @@
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <link rel="stylesheet" href="jquery-ui.min.css">
 
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="../bower_components/modernizr/modernizr.js"></script>
@@ -25,7 +24,7 @@
   <body>
 
     <div class="hero-unit">
-   
+
       <a href="#/create"><button id="newUserPage">New User</button></a>
       <a href ="#/loginUser"><button id="loginUserPage">Log In</button></a>
 
@@ -38,6 +37,9 @@
 
     <script type="text/template" id="homeTemp">
       <h1>Home</h1>
+      <a href="#/create"><button id="newUserPage">New User</button></a>
+      <a href ="#/loginUser"><button id="loginUserPage">Log In</button></a>
+
     </script>
 
     <script type="text/template" id="createNewTemp">
@@ -61,7 +63,6 @@
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
-    <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
 
     
     <!-- endbower -->
@@ -81,6 +82,8 @@
         <!-- build:js scripts/main.js -->
         <script src="scripts/models/user_model.js"></script>
         <script src="scripts/collections/user_collection.js"></script>
+        <script src="scripts/views/login_user_view.js"></script>
+        <script src="scripts/views/home_view.js"></script>
         <script src="scripts/views/create_user_view.js"></script>
         <script src="scripts/routers/router.js"></script>
         <script src="scripts/main.js"></script>
