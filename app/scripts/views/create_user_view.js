@@ -40,7 +40,8 @@
            error: function (user, error) {
              alert("Fail. " + error.message);
            }
-         })
+         });
+         App.router.navigate('', {trigger:true});
 
           },
 

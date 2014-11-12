@@ -9,7 +9,8 @@
     },
 
     home: function(){
-
+      $('createUserForm').empty();
+      $('loginForm').empty();
 
     },
     createUser: function (newUser){
