@@ -6,7 +6,7 @@
 
 
     events: {
-      'submit #enterButton': 'loginUser'
+      'click .loginButton': 'loginUser'
     },
 
     template:$('#loginTemp').html(),
@@ -27,16 +27,20 @@
       var username = $('#userName').val();
       var password = $('#password').val();
 
+      console.log(username);
+
       Parse.User.logIn(username, password, {
         success: function (user) {
           //App.user = user;
+          console.log(username);
 
-          App.updateUser ();
-          App.router.navigate('', {trigger: true});
+          // App.updateUser();
+          App.router.navigate('welcomeView', {trigger: true});
           console.log('login successful');
         },
         error: function (user, error) {
           alert("Error: " + error.message);
+          App.router.navigate('loginView', {trigger: true});
     }
 
     });
