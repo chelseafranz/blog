@@ -3,7 +3,6 @@ App.Views.homeView = Parse.View.extend({
 	className: 'home',
 
 	events: {
-		'submit #loginUserPage': 'loginUser'
 
 	},
 
@@ -12,7 +11,7 @@ App.Views.homeView = Parse.View.extend({
 	initialize: function(){
 		console.log('home');
 		this.render();
-		$('.hero-unit').html(this.$el);
+//		$('.hero-unit').html(this.$el);
 
 	},
 
@@ -20,14 +19,6 @@ App.Views.homeView = Parse.View.extend({
 
         this.$el.html(this.template);
       },
-
-      loginUser: function(){
-      	App.Views.loginUser;
-
-      }
-
-
-
 
 });
 }());

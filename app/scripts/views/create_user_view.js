@@ -24,7 +24,7 @@
 
       createUser: function(a){
         a.preventDefault();
-          
+
 
         var user = new Parse.User({
           username: $('#userName').val(),

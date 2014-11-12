@@ -2,7 +2,7 @@
 
 
   App.Views.loginUser = Parse.View.extend ({
-    className: 'login',
+    id: 'loginForm',
 
 
     events: {
@@ -12,14 +12,12 @@
     template:$('#loginTemp').html(),
 
     initialize: function (){
-      console.log('login View');
       $('.createUser').empty();
       this.render();
       $('#loginForm').html(this.$el);
     },
 
     render: function(){
-
       this.$el.html(this.template);
     },
 
