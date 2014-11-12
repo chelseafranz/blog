@@ -12,6 +12,7 @@
       template:$('#createNewTemp').html(),
 
       initialize: function (){
+        $('.login').empty();
         this.render();
         $('#createUserForm').html(this.$el);
       },
@@ -23,6 +24,7 @@
 
       createUser: function(a){
         a.preventDefault();
+          
 
         var user = new Parse.User({
           username: $('#userName').val(),
@@ -32,16 +34,17 @@
         });
 
 
-         user.signUp(null, {
-           success: function(user){
-             console.log('success');
+        user.signUp(null, {
+          success: function(user){
+            console.log('success');
+          App.router.navigate('', {trigger:true});
 
-           },
-           error: function (user, error) {
-             alert("Fail. " + error.message);
-           }
-         });
-         App.router.navigate('', {trigger:true});
+          },
+          error: function (user, error) {
+            alert("Fail. " + error.message);
+          }
+        });
+        App.router.navigate('', {trigger:true});
 
           },
 

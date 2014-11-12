@@ -2,8 +2,8 @@
 
 
   App.Views.loginUser = Parse.View.extend ({
-    className: 'loginUser',
-    idAttribute: 'objectId',
+    className: 'login',
+
 
     events: {
       'submit #userloginForm': 'loginUser'
@@ -12,6 +12,8 @@
     template:$('#loginTemp').html(),
 
     initialize: function (){
+      console.log('login View');
+      $('.createUser').empty();
       this.render();
       $('#loginForm').html(this.$el);
     },
@@ -30,7 +32,10 @@
       Parse.User.logIn(username, password, {
         success: function (user) {
           //App.user = user;
+
+          App.updateUser ();
           App.router.navigate('', {trigger: true});
+          console.log('login successful');
         },
         error: function (user, error) {
           alert("Error: " + error.message);
