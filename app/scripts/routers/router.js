@@ -19,7 +19,7 @@
     },
 
     userLogin: function (loginUser){
-      new App.Views.LoginUser();
+      new App.Views.loginUser();
     },
   })
 }());
