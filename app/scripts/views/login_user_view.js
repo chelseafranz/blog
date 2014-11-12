@@ -6,7 +6,7 @@
 
 
     events: {
-      'submit #userloginForm': 'loginUser'
+      'submit #enterButton': 'loginUser'
     },
 
     template:$('#loginTemp').html(),
