@@ -12,7 +12,7 @@
     template:$('#loginTemp').html(),
 
     initialize: function (){
-      $('.createUser').empty();
+      $('.startPage').empty();
       this.render();
       $('#loginForm').html(this.$el);
     },

@@ -11,7 +11,7 @@ App.Views.homeView = Parse.View.extend({
 	initialize: function(){
 		console.log('home');
 		this.render();
-//		$('.hero-unit').html(this.$el);
+		$('.startPage').html(this.$el);
 
 	},
 
