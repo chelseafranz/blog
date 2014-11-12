@@ -33,10 +33,14 @@
 
 
          user.signUp(null, {
-           success: function(user){
-             console.log('success');
-
+           
+      success: function (){
+       App.router.navigate('', {trigger: true});
+      }
+      });
+      $('#creatUserForm')[0].reset();
            },
+
            error: function (user, error) {
              alert("Fail. " + error.message);
            }
