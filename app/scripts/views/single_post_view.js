@@ -22,10 +22,11 @@ App.Views.singlePost = Parse.View.extend({
 
 	createPost: function (a) {
       a.preventDefault();
-		
+
       var p = new App.Models.blogPost({
-        title: $('#title').val(),
+        title: $('#blogTitle').val(),
         content: $('#content').val(),
+				tags: $('#blogTags').val(),
         user: App.user
       });
 
@@ -33,8 +34,7 @@ App.Views.singlePost = Parse.View.extend({
 
 			p.save(null, {
         success: function () {
-					console.log('saved');
-          App.allblogposts.add(p);
+          App.allBlogPosts.add(p);
           App.router.navigate('welcomeView', { trigger: true });
         }
       });

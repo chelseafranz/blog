@@ -40,7 +40,7 @@
     },
 
     blogPosts: function(){
-      new App.Views.blogPostsView();
+      new App.Views.blogPostsView({ collection: App.allBlogPosts });
     }
 
   })
