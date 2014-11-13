@@ -6,19 +6,22 @@ App.Views.singlePost = Parse.View.extend({
 		'submit #createPostButton':'createPost'
 	},
 
-	template: $('#blogPost').html(),
+	//  template: $('#blogPost').html(),
 
 	initialize: function (){
 		this.render();
-
+		var template = $('#blogPost').html();
+		$('#welcomepage').html(template);
 	},
 
-	template: $('#blogPost').html(),
+	// template: $('#blogPost').html(),
 	render: function(){
 		this.$el.html(this.template);
 	},
 
-	addPost: function (a) {
+
+
+	createPost: function (a) {
       a.preventDefault();
 
       var p = new App.Models.blogPost({
