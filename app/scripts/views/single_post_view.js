@@ -3,7 +3,7 @@
 App.Views.singlePost = Parse.View.extend({
 
 	events: {
-		'submit #gotoPost': 'createPost'
+		'submit #createBlogPostForm': 'createPost'
 
 	},
 
@@ -22,7 +22,7 @@ App.Views.singlePost = Parse.View.extend({
 
 	createPost: function (a) {
       a.preventDefault();
-
+		
       var p = new App.Models.blogPost({
         title: $('#title').val(),
         content: $('#content').val(),

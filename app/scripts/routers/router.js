@@ -7,7 +7,8 @@
       'create': 'createUser',
       'loginUser': 'loginUser',
       'welcomeView': 'welcomeView',
-      'singlePost': 'postView'
+      'singlePost': 'postView',
+      'blogPosts': 'blogPosts'
 
     },
 
@@ -36,7 +37,11 @@
 
     postView: function(){
       new App.Views.singlePost();
+    },
+
+    blogPosts: function(){
+      new App.Views.blogPostsView();
     }
-    
+
   })
 }());
