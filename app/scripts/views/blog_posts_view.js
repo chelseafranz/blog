@@ -8,6 +8,14 @@
       template: _.template($('#allBlogPosts').html()),
 
       initialize: function (options) {
+        $('#welcomePage').empty();
+        this.render();
+        $('#blogList').html(this.$el);
+
+        // render: function(){
+        //   this.$el.html($('#allBlogPosts').html());
+        // },
+
 
         this.options = options;
 
@@ -15,7 +23,7 @@
         this.collection.off();
         this.collection.on('sync', this.blogQuery, this);
 
-        $('#blogList').html(this.$el);
+
 
 
         this.blogQuery();
