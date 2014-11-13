@@ -26,9 +26,9 @@
     userLogin: function (loginUser){
       new App.Views.loginUser();
     },
-    loginUser: function (user){
 
-     new App.Views.loginUser();
+    loginUser: function (user){
+      new App.Views.loginUser();
     },
 
     welcomeView: function(){

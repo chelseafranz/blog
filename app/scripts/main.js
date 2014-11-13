@@ -5,9 +5,10 @@ Parse.initialize("WrDfLsxuougObGc7QHG1HAbWvDZG694tdg8gVQuS", "rMzyC9RkZOw29M69bL
       App.user = Parse.User.current();
 
       App.users = new App.Collections.Users();
+
       App.allBlogPosts = new App.Collections.allBlogPosts();
 
-      App.users.fetch().done(function(){
+      App.allBlogPosts.fetch().done(function(){
 
         App.router = new App.Routers.AppRouter();
 

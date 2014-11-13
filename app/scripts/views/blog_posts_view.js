@@ -3,7 +3,7 @@
   App.Views.blogPostsView = Parse.View.extend({
 
       tagName: 'ul',
-      className: 'allPosts',
+      className: 'blogList',
 
       template: _.template($('#allBlogPosts').html()),
 
@@ -11,15 +11,17 @@
 
         this.options = options;
 
+        console.log(this.collection);
         this.collection.off();
         this.collection.on('sync', this.blogQuery, this);
 
         $('#blogList').html(this.$el);
 
+
         this.blogQuery();
       },
 
-      coffeeQuery: function () {
+      blogQuery: function () {
 
         var self = this;
 
