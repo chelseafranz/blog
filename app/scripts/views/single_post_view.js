@@ -3,20 +3,19 @@
 App.Views.singlePost = Parse.View.extend({
 
 	events: {
-		'submit #createPostButton':'createPost'
-	},
+		'submit #gotoPost': 'createPost'
 
-	//  template: $('#blogPost').html(),
+	},
 
 	initialize: function (){
+		$('#welcomePage').empty();
 		this.render();
-		var template = $('#blogPost').html();
-		$('#welcomepage').html(template);
+		$('#blogPost').html(this.$el);
+
 	},
 
-	// template: $('#blogPost').html(),
 	render: function(){
-		this.$el.html(this.template);
+		this.$el.html($('#postTemp').html());
 	},
 
 
@@ -36,7 +35,7 @@ App.Views.singlePost = Parse.View.extend({
         success: function () {
 					console.log('saved');
           App.allblogposts.add(p);
-          App.router.navigate('welcome', { trigger: true });
+          App.router.navigate('welcomeView', { trigger: true });
         }
       });
 

@@ -7,7 +7,7 @@
       'create': 'createUser',
       'loginUser': 'loginUser',
       'welcomeView': 'welcomeView',
-      'singlePost': 'createPost'
+      'singlePost': 'postView'
 
     },
 
@@ -33,13 +33,10 @@
     welcomeView: function(){
       new App.Views.welcomeView();
     },
-    createPost: function(){
+
+    postView: function(){
       new App.Views.singlePost();
     }
-    // addNewBar: function(AddBar){
-    //   var c = App.Bars.get(addBar);
-    //   new App.Views.AddBar({ bar: c});
-    // }
-
+    
   })
 }());

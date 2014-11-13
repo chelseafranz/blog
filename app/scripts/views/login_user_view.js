@@ -27,7 +27,6 @@
       var username = $('#userName').val();
       var password = $('#password').val();
 
-      console.log(username);
 
       Parse.User.logIn(username, password, {
         success: function (user) {
