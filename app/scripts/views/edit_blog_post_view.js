@@ -3,7 +3,7 @@
 
 		events: {
 		'submit #editBlogpostForm' : 'editPost',
-		
+
 		},
 
 		template: $('#editPostTemp').html(),
@@ -11,7 +11,7 @@
 		initialize: function(){
 			$('#welcomePage').empty();
 			console.log('edit post');
-			
+
 			this.render();
 
 			$('#blogPost').html(this.$el);

@@ -4,7 +4,7 @@
 
       el: '#blogList',
 
-      
+
 
       template: _.template($('#allBlogPosts').html()),
 
