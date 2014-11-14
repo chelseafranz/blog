@@ -6,12 +6,12 @@
 		
 		},
 
-		template: _.template($('#allBlogPosts').html()),
+		template: _.template($('#editPostTemp').html()),
 
 		initialize: function(){
 			$('#welcomePage').empty();
 			console.log('edit post');
-			this.collection.on('sync', this.blogQuery, this);
+			//this.collection.on('sync', this.blogQuery, this);
 			this.render();
 
 			$('#blogPost').html(this.$el);

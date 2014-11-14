@@ -4,6 +4,10 @@
 
       el: '#blogList',
 
+      events: {
+        'submit #editForm': 'edit'
+      },
+
       template: _.template($('#allBlogPosts').html()),
 
       initialize: function (options) {
@@ -23,6 +27,10 @@
         });
 
       },
+
+      edit: function(){
+        console.log('edit');
+      }
 
 
   })
