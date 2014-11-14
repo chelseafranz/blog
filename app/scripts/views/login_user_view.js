@@ -30,10 +30,10 @@
 
       Parse.User.logIn(username, password, {
         success: function (user) {
-          //App.user = user;
+       
           console.log(username);
 
-          // App.updateUser();
+         
           App.router.navigate('welcomeView', {trigger: true});
           console.log('login successful');
         },

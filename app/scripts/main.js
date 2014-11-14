@@ -15,13 +15,6 @@ Parse.initialize("WrDfLsxuougObGc7QHG1HAbWvDZG694tdg8gVQuS", "rMzyC9RkZOw29M69bL
         Parse.history.start();
       });
 
-      $('#logOut').on('click', function(e){
-      	e.preventDefault();
-      	Parse.User.logOut();
-      	App.updateUser();
-      	App.router.navigate('', {trigger:true});
-      });
-
       // App.updateUser = function(e){
       // 	e.preventDefault();
       // 	App.user = Parse.User.current();
