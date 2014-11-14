@@ -2,8 +2,11 @@
 
   App.Views.blogPostsView = Parse.View.extend({
 
-
       el: '#blogList',
+
+      events: {
+        'submit #editForm': 'edit'
+      },
 
       template: _.template($('#allBlogPosts').html()),
 
@@ -24,6 +27,10 @@
         });
 
       },
+
+      edit: function(){
+        console.log('edit');
+      }
 
 
   })

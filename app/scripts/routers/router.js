@@ -44,8 +44,10 @@
       new App.Views.blogPostsView({ collection: App.allBlogPosts });
     },
 
+
     editBlogPosts: function(){
       new App.Views.editBlogPostView();
+
     }
 
   })
