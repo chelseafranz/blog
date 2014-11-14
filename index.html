@@ -68,6 +68,7 @@
     <p>What would you like to do?</p>
     <a href='#/singlePost'><button id=gotoPost>Post</button></a>
     <a href='#/blogPosts'><button id=gotoBlogs>Edit My Posts</button></a>
+    <button id="logOut">Log Out</button>
 
     </script>
 
@@ -82,21 +83,18 @@
 
     <script type="text/template" id="allBlogPosts">
     <a href="#/edit/<%=objectId %>">
-    <div id='<%= objectId %>'> 
+    <div id='<%= objectId %>'>
     <h1> <%= title %> </h1>
     <h2> <%= author %> </h2>
     <div class= "content"> <%= content%> </div>
     <span class= "tags"><%= tags %></span>
-    
-    <button id="editPost">Edit</button>
-    
     </div>
     </a>
     </script>
 
     <script type="text/template" id="editPostTemp">
   <h2> Edit Post</h2>
-  
+
   <form id= "editBlogPostForm">
         <input type="text" id="blogTitle" placeholder="title"/>
         <input type="text" id="content" placeholder="write something here"/>

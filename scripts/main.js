@@ -25,7 +25,6 @@
 (function(){
 	App.Models.blogPost= Parse.Object.extend({
 		className: 'blogPost',
-		idAttribute: 'objectId',
 
 		defaults: {
 			title: '',
@@ -33,11 +32,12 @@
 			tags: '',
 			content: ''
 		},
-		template: $('#blogPost').html(),
 
-		initialize: function(){
-		},
 
+		 initialize: function(){
+		 },
+
+		
 	})
 
 }());
@@ -93,10 +93,10 @@
 
       Parse.User.logIn(username, password, {
         success: function (user) {
-          //App.user = user;
+       
           console.log(username);
 
-          // App.updateUser();
+         
           App.router.navigate('welcomeView', {trigger: true});
           console.log('login successful');
         },
@@ -117,7 +117,7 @@
 
 		events: {
 		'submit #editBlogpostForm' : 'editPost',
-		
+
 		},
 
 		template: $('#editPostTemp').html(),
@@ -125,7 +125,7 @@
 		initialize: function(){
 			$('#welcomePage').empty();
 			console.log('edit post');
-			
+
 			this.render();
 
 			$('#blogPost').html(this.$el);
@@ -150,6 +150,7 @@
 	});
 
 }());
+
 (function  () {
 App.Views.homeView = Parse.View.extend({
 	className: 'home',
@@ -179,7 +180,9 @@ App.Views.homeView = Parse.View.extend({
 
 	App.Views.welcomeView = Parse.View.extend({
 
-
+		events: {
+			'click #logOut': 'logout'
+		},
 
 		template: $('#welcomeTemp').html(),
 
@@ -188,12 +191,22 @@ App.Views.homeView = Parse.View.extend({
 			console.log('welcome page');
 			this.render();
 			$('#welcomePage').html(this.$el);
+
+
 		},
 
 		render: function(){
 			this.$el.html(this.template)
 		},
 
+		logout: function(){
+			console.log('logout');
+        Parse.User.logOut();
+        App.user= null, 
+       
+        App.router.navigate('', {trigger:true});
+        $('#welcomePage').empty(); 
+		}
 
 		
 	});
@@ -309,7 +322,7 @@ App.Views.singlePost = Parse.View.extend({
 
       el: '#blogList',
 
-      
+
 
       template: _.template($('#allBlogPosts').html()),
 
@@ -334,6 +347,7 @@ App.Views.singlePost = Parse.View.extend({
 
   })
 }());
+
 (function (){
 
   App.Routers.AppRouter = Parse.Router.extend({
@@ -346,6 +360,7 @@ App.Views.singlePost = Parse.View.extend({
       'singlePost': 'postView',
       'blogPosts': 'blogPosts',
       'edit/:id': 'editBlogPost',
+      'logOut': 'logout'
 
     },
 
@@ -382,8 +397,8 @@ App.Views.singlePost = Parse.View.extend({
       var b = App.allBlogPosts.get(id);
 
      new App.Views.editBlogPostView(({ blogPost: b }));
-    }
-
+    },
+  
   })
 }());
 
@@ -402,13 +417,6 @@ Parse.initialize("WrDfLsxuougObGc7QHG1HAbWvDZG694tdg8gVQuS", "rMzyC9RkZOw29M69bL
         App.router = new App.Routers.AppRouter();
 
         Parse.history.start();
-      });
-
-      $('#logOut').on('click', function(e){
-      	e.preventDefault();
-      	Parse.User.logOut();
-      	App.updateUser();
-      	App.router.navigate('', {trigger:true});
       });
 
       // App.updateUser = function(e){
