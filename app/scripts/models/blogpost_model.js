@@ -1,7 +1,7 @@
 (function(){
 	App.Models.blogPost= Parse.Object.extend({
 		className: 'blogPost',
-		idAttribute: 'objectId',
+		// idAttribute: 'objectId',
 
 		defaults: {
 			title: '',
@@ -9,10 +9,10 @@
 			tags: '',
 			content: ''
 		},
-		template: $('#blogPost').html(),
-
-		initialize: function(){
-		},
+		// template: $('#blogPost').html(),
+		//
+		 initialize: function(){
+		 },
 
 	})
 
