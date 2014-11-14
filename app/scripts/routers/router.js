@@ -9,17 +9,15 @@
       'welcomeView': 'welcomeView',
       'singlePost': 'postView',
       'blogPosts': 'blogPosts',
-      'editBlogPost': 'editBlogPost',
+      'edit/:id': 'editBlogPost',
 
     },
 
     homeView: function(){
     new App.Views.homeView();
 
-
     },
     createUser: function (newUser){
-
       new App.Views.createUser();
 
     },
@@ -44,8 +42,10 @@
       new App.Views.blogPostsView({ collection: App.allBlogPosts });
     },
 
-    editBlogPost: function  (){
-     new App.Views.editBlogPostView({ collection: App.allBlogPosts });
+    editBlogPost: function  (id){
+      var b = App.allBlogPosts.get(id);
+
+     new App.Views.editBlogPostView(({ blogPost: b }));
     }
 
   })

@@ -76,50 +76,6 @@
     <p>What would you like to do?</p>
     <a href='#/singlePost'><button id=gotoPost>Post</button></a>
     <a href='#/blogPosts'><button id=gotoBlogs>Edit My Posts</button></a>
-     <div class="grid-items-lines">
-  <a href="javascript:void(0)" class="grid-item">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png" alt="">
-    <h1>Grid Item</h1>
-    <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
-  </a>
-  <a href="javascript:void(0)" class="grid-item">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
-    <h1>Another Item</h1>
-    <p>Lorem ipsum consectetur dolor sit amet, consectetur adipisicing elit.</p>
-  </a>
-  <a href="javascript:void(0)" class="grid-item">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png" alt="">
-    <h1>Another Grid Item</h1>
-    <p>Lorem ipsum dolor sit amet, elit.</p>
-  </a>
-  <a href="javascript:void(0)" class="grid-item">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png" alt="">
-    <h1>Grid Item</h1>
-    <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
-  </a>
-  <a href="javascript:void(0)" class="grid-item grid-item-big">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png" alt="">
-    <h1>Wider Grid Item</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, illum.</p>
-  </a>
-  <a href="javascript:void(0)" class="grid-item">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
-    <h1>A Grid Item</h1>
-    <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
-  </a>
-  <a href="javascript:void(0)" class="grid-item">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png" alt="">
-    <h1>Item</h1>
-    <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
-  </a>
-  <a href="javascript:void(0)" class="grid-item">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png" alt="">
-    <h1>Last Grid Item</h1>
-    <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
-  </a>
-  <div class="right-cover"></div>
-  <div class="bottom-cover"></div>
-</div>
 
     </script>
 
@@ -133,26 +89,29 @@
     </script>
 
     <script type="text/template" id="allBlogPosts">
+    <a href="#/edit/<%=objectId %>">
     <div id='<%= objectId %>'> 
     <h1> <%= title %> </h1>
     <h2> <%= author %> </h2>
     <div class= "content"> <%= content%> </div>
     <span class= "tags"><%= tags %></span>
-    <form id= "editForm">
+    
     <button id="editPost">Edit</button>
     
-    </form>
     </div>
+    </a>
     </script>
 
     <script type="text/template" id="editPostTemp">
   <h2> Edit Post</h2>
+  
   <form id= "editBlogPostForm">
         <input type="text" id="blogTitle" placeholder="title"/>
         <input type="text" id="content" placeholder="write something here"/>
         <input type="text" id="blogTags" placeholder="add tags"/>
-        <button id="createPostButton">Post</button>
+        <button id="createPostButton">Update Post</button>
     </form>
+    </a>
     </script>
 
     <!-- build:js scripts/vendor.js -->

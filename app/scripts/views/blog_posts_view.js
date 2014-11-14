@@ -4,9 +4,7 @@
 
       el: '#blogList',
 
-      events: {
-        'submit #editForm': 'edit'
-      },
+      
 
       template: _.template($('#allBlogPosts').html()),
 
@@ -26,10 +24,6 @@
           self.$el.append(self.template(x.toJSON()));
         });
 
-      },
-
-      edit: function(){
-        console.log('edit');
       }
 
 
