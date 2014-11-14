@@ -35,6 +35,7 @@ App.Views.singlePost = Parse.View.extend({
 			p.save(null, {
         success: function () {
           App.allBlogPosts.add(p);
+          $('#createBlogPostForm').empty();
           App.router.navigate('welcomeView', { trigger: true });
         }
       });
