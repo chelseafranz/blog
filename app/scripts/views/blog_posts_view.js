@@ -2,53 +2,28 @@
 
   App.Views.blogPostsView = Parse.View.extend({
 
-      tagName: 'ul',
-      className: 'blogList',
+      el: '#blogList',
 
-      template: $('#allBlogPosts').html(),
+      template: _.template($('#allBlogPosts').html()),
 
       initialize: function (options) {
+
         $('#welcomePage').empty();
-
-        this.render();
-        $('#blogList').html(this.$el);
-
-        this.options = options;
-
-        console.log(this.collection);
-        this.collection.off();
         this.collection.on('sync', this.blogQuery, this);
+        this.render();
 
-      },
-
-       blogQuery: function () {
-
-        this.blogQuery();
       },
 
       render: function(){
-        this.$el.html(this.template)
+
+        var self = this;
+
+        this.collection.each( function (x) {
+          self.$el.append(self.template(x.toJSON()));
+        });
+
       },
 
-      blogQuery: function () {
 
-
-         var self = this;
-
-
-       
-
-      var blog_author = new Parse.Query(App.Models.blogPost);
-      blog_author.equalTo('user', App.user);
-      blog_author.find({
-
-        success: function (results) {
-           self.collection = results;
-           console.log(App.Models.blogPost);
-          self.render();
-         }
-       });
-
-       }
   })
 }());

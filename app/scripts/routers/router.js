@@ -8,7 +8,8 @@
       'loginUser': 'loginUser',
       'welcomeView': 'welcomeView',
       'singlePost': 'postView',
-      'blogPosts': 'blogPosts'
+      'blogPosts': 'blogPosts',
+      'editBlogPost': 'editBlogPost',
 
     },
 
@@ -41,6 +42,10 @@
 
     blogPosts: function(){
       new App.Views.blogPostsView({ collection: App.allBlogPosts });
+    },
+
+    editBlogPost: function  (){
+     new App.Views.editBlogPostView({ collection: App.allBlogPosts });
     }
 
   })

@@ -25,7 +25,7 @@
 (function(){
 	App.Models.blogPost= Parse.Object.extend({
 		className: 'blogPost',
-		idAttribute: 'objectId',
+		// idAttribute: 'objectId',
 
 		defaults: {
 			title: '',
@@ -33,10 +33,10 @@
 			tags: '',
 			content: ''
 		},
-		template: $('#blogPost').html(),
-
-		initialize: function(){
-		},
+		// template: $('#blogPost').html(),
+		//
+		 initialize: function(){
+		 },
 
 	})
 
@@ -269,10 +269,9 @@ App.Views.singlePost = Parse.View.extend({
 
   App.Views.blogPostsView = Parse.View.extend({
 
-      tagName: 'ul',
-      className: 'blogList',
 
-      template: $('#allBlogPosts').html(),
+      el: '#blogList',
+
 
       initialize: function (options) {
         $('#welcomePage').empty();
@@ -280,35 +279,30 @@ App.Views.singlePost = Parse.View.extend({
         this.render();
         $('#blogList').html(this.$el);
 
-        this.options = options;
+      template: _.template($('#allBlogPosts').html()),
 
-        console.log(this.collection);
-        this.collection.off();
+      initialize: function (options) {
+
+        $('#welcomePage').empty();
         this.collection.on('sync', this.blogQuery, this);
-
-
-         // this.blogQuery();
+        this.render();
 
       },
 
        blogQuery: function () {
 
         this.blogQuery();
+
       },
 
       render: function(){
-        this.$el.html(this.template)
-      },
-
-      blogQuery: function () {
 
 
          var self = this;
 
 
-       var blog_writer = new Parse.Query(App.Models.blogPost);
-       blog_writer.equalTo('user', App.user);
-       blog_writer.find({
+       
+
 
       var blog_author = new Parse.Query(App.Models.blogPost);
       blog_author.equalTo('user', App.user);
@@ -322,6 +316,14 @@ App.Views.singlePost = Parse.View.extend({
        });
 
        }
+        this.collection.each( function (x) {
+          self.$el.append(self.template(x.toJSON()));
+        });
+
+      },
+
+
+
   })
 }());
 
