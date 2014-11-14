@@ -17,8 +17,6 @@
 			this.$el.html(this.template)
 		},
 
-
-
 	});
 
 }());

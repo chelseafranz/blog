@@ -12,7 +12,7 @@
         this.render();
         $('#blogList').html(this.$el);
 
-             
+
 
 
         this.options = options;
