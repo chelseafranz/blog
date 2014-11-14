@@ -19,17 +19,29 @@
         this.collection.off();
         this.collection.on('sync', this.blogQuery, this);
 
-         // this.blogQuery();
-
       },
 
        blogQuery: function () {
 
+        this.blogQuery();
+      },
+
+      render: function(){
+        this.$el.html(this.template)
+      },
+
+      blogQuery: function () {
+
+
          var self = this;
 
-       var blog_writer = new Parse.Query(App.Models.blogPost);
-       blog_writer.equalTo('user', App.user);
-       blog_writer.find({
+
+       
+
+      var blog_author = new Parse.Query(App.Models.blogPost);
+      blog_author.equalTo('user', App.user);
+      blog_author.find({
+
         success: function (results) {
            self.collection = results;
            console.log(App.Models.blogPost);
