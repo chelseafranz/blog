@@ -93,7 +93,6 @@
     <a href="#/edit/<%=objectId %>">
     <div id='<%= objectId %>'>
     <h1> <%= title %> </h1>
-    <h2> <%= author %> </h2>
     <div class= "content"> <%= content%> </div>
     <span class= "tags"><%= tags %></span>
     </div>
@@ -104,9 +103,9 @@
   <h2> Edit Post</h2>
 
   <form id= "editBlogPostForm">
-        <input type="text" id="blogTitle" placeholder="title"/>
-        <input type="text" id="content" placeholder="write something here"/>
-        <input type="text" id="blogTags" placeholder="add tags"/>
+        <input type="text" id="updateblogTitle" value="<%=title%>"/>
+        <input type="text" id="updatecontent" value="<%=content%>"/>
+        <input type="text" id="updateblogTags" value="<%=tags%>"/>
         <button id="createPostButton">Update Post</button>
     </form>
     </a>

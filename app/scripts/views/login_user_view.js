@@ -18,6 +18,7 @@
     },
 
     render: function(){
+      this.$el.empty();
       this.$el.html(this.template);
     },
 

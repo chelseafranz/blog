@@ -11,6 +11,7 @@
 
 
 		 initialize: function(){
+		 	console.log('new post added');
 		 },
 
 		

@@ -2,16 +2,16 @@
 	App.Views.editBlogPostView = Parse.View.extend({
 
 		events: {
-		'submit #editBlogpostForm' : 'editPost',
+		'submit #editBlogPostForm' : 'editPost',
 
 		},
 
-		template: $('#editPostTemp').html(),
+		template: _.template($('#editPostTemp').html()) ,
 
-		initialize: function(){
-			$('#welcomePage').empty();
-			console.log('edit post');
-
+		initialize: function(options){
+			this.options=options;
+			console.log(this.options.blogPost);
+			console.log('on edit post page');
 			this.render();
 
 			$('#blogPost').html(this.$el);
@@ -19,18 +19,29 @@
 		},
 
 		render: function (){
-		this.$el.html(this.template);
+		this.$el.empty();
+		$('#blogList').empty();
+		this.$el.html(this.template((this.options.blogPost).toJSON()));
 		},
 
 		editPost: function(e){
 			e.preventDefault();
-			console.log('edit');
+			console.log('start edit');
 
 			this.options.blogPost.set({
-				title: $('#blogTitle').val(),
-				content:$('#content').val(),
-				tags: $('#blogTags').val()
+				title: $('#updateblogTitle').val(),
+				content:$('#updatecontent').val(),
+				tags: $('#updateblogTags').val()
 			});
+
+			this.options.blogPost.save(null,{
+				success: function(){
+					console.log('successfully updated');
+					App.router.navigate('welcomeView', {trigger: true});
+					
+				}
+				})
+			
 		}
 
 	});

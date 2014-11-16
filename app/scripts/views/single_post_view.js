@@ -15,7 +15,9 @@ App.Views.singlePost = Parse.View.extend({
 	},
 
 	render: function(){
+		this.$el.empty();
 		this.$el.html($('#postTemp').html());
+
 	},
 
 
@@ -27,7 +29,8 @@ App.Views.singlePost = Parse.View.extend({
         title: $('#blogTitle').val(),
         content: $('#content').val(),
 		tags: $('#blogTags').val(),
-        user: App.user
+        author: App.user.attributes.name,
+       user: App.user
       });
 
 			p.setACL(new Parse.ACL(App.user));
@@ -35,7 +38,7 @@ App.Views.singlePost = Parse.View.extend({
 			p.save(null, {
         success: function () {
           App.allBlogPosts.add(p);
-          $('#createBlogPostForm').empty();
+
           App.router.navigate('welcomeView', { trigger: true });
         }
       });

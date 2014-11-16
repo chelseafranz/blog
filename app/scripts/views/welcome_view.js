@@ -18,6 +18,8 @@
 		},
 
 		render: function(){
+			$('#blogPost').empty();
+			$('#blogList').empty();
 			this.$el.html(this.template)
 		},
 
