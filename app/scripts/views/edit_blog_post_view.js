@@ -55,7 +55,7 @@
 			comment.save(null, {
 				success: function (){
 					console.log('commet');
-					App.router.navigate('', {trigger: true});
+					App.router.navigate('welcomeView', { trigger: true });
 				}
 			});
 
