@@ -11,7 +11,7 @@
       'blogPosts': 'blogPosts',
       'edit/:id': 'editBlogPost',
       'logOut': 'logout',
-      
+
 
     },
 
@@ -47,7 +47,7 @@
     editBlogPost: function  (id){
       var b = App.allBlogPosts.get(id);
 
-     new App.Views.editBlogPostView(({ blogPost: b }));
+     new App.Views.editBlogPostView({ blogPost: b });
     },
 
   })
