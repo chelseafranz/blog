@@ -7,14 +7,8 @@
 			author: '',
 			tags: '',
 			content: ''
-		},
+		}
 
-
-		 initialize: function(){
-		 	console.log('new post added');
-		 },
-
-		
 	})
 
 }());
