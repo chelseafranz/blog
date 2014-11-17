@@ -30,7 +30,6 @@ App.Views.singlePost = Parse.View.extend({
         content: $('#content').val(),
 		tags: $('#blogTags').val(),
         author: App.user.attributes.name,
-       user: App.user
       });
 
 			p.setACL(new Parse.ACL(App.user));

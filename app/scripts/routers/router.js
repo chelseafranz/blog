@@ -10,7 +10,8 @@
       'singlePost': 'postView',
       'blogPosts': 'blogPosts',
       'edit/:id': 'editBlogPost',
-      'logOut': 'logout'
+      'logOut': 'logout',
+      'explore': 'explore'
 
     },
 
@@ -47,6 +48,10 @@
       var b = App.allBlogPosts.get(id);
       console.log(b);
      new App.Views.editBlogPostView({ blogPost: b });
+    },
+
+    explore: function(){
+      new App.Views.exploreView({collection: App.allBlogPosts})
     }
   
   })

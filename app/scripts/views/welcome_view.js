@@ -11,6 +11,7 @@
 		initialize: function(){
 			$('#loginForm').empty();
 			console.log('welcome page');
+			 //console.log(App.user.attributes.username);
 			this.render();
 			$('#welcomePage').html(this.$el);
 

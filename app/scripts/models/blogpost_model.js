@@ -6,7 +6,8 @@
 			title: '',
 			author: '',
 			tags: '',
-			content: ''
+			content: '',
+			user: App.user,
 		},
 
 
