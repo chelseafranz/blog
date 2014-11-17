@@ -5,7 +5,7 @@
 
 		'submit #editBlogpostForm' : 'editPost',
 		'submit #addComment' : 'addComment',
->>>>>>> victoriablog
+
 
 		},
 

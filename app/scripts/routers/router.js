@@ -11,6 +11,7 @@
       'blogPosts': 'blogPosts',
       'edit/:id': 'editBlogPost',
       'logOut': 'logout',
+      
 
     },
 
@@ -43,20 +44,11 @@
       new App.Views.blogPostsView({ collection: App.allBlogPosts });
     },
 
-    editBlogPost: function(id){
+    editBlogPost: function  (id){
       var b = App.allBlogPosts.get(id);
-<<<<<<< HEAD
-      console.log(b);
-     new App.Views.editBlogPostView({ blogPost: b });
-    }
-  
-=======
 
      new App.Views.editBlogPostView(({ blogPost: b }));
     },
 
-
-
->>>>>>> victoriablog
   })
 }());
