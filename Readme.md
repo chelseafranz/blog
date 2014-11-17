@@ -1,3 +1,12 @@
-## Yo, I'm a Readme
+## Blog
+To use:
+clone
+run npm install
+run bower install
 
-You should probably update me so people looking at your code have an idea what it is being used for :)
+
+Create a functional blog with users.
+
+Parse, backbone, underscore, neat
+
+Chelsea & Victoria
