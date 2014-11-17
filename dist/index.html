@@ -66,8 +66,9 @@
     <script type="text/template" id="welcomeTemp">
     <h1>Welcome </h1>
     <p>What would you like to do?</p>
-    <a href='#/singlePost'><button id=gotoPost>Post</button></a>
-    <a href='#/blogPosts'><button id=gotoBlogs>Edit My Posts</button></a>
+    <a href='#/singlePost'><button id="gotoPost">Post</button></a>
+    <a href='#/blogPosts'><button id="gotoBlogs">Edit My Posts</button></a>
+    <a href='#/explore'><button id="explore">Explore Posts</button></a>
     <button id="logOut">Log Out</button>
 
     </script>
@@ -85,25 +86,39 @@
     <a href="#/edit/<%=objectId %>">
     <div id='<%= objectId %>'>
     <h1> <%= title %> </h1>
-    <h2> <%= author %> </h2>
     <div class= "content"> <%= content%> </div>
     <span class= "tags"><%= tags %></span>
     </div>
     </a>
     </script>
 
+    <script type="text/template" id="commentTemplate">
+      <li><%= commentText %></li>
+    </script>
+
     <script type="text/template" id="editPostTemp">
   <h2> Edit Post</h2>
 
-  <form id= "editBlogPostForm">
-        <input type="text" id="blogTitle" placeholder="title"/>
-        <input type="text" id="content" placeholder="write something here"/>
-        <input type="text" id="blogTags" placeholder="add tags"/>
+    <form id= "editBlogPostForm">
+        <input type="text" id="updateblogTitle" value="<%=title%>"/>
+        <input type="text" id="updatecontent" value="<%=content%>"/>
+        <input type="text" id="updateblogTags" value="<%=tags%>"/>
         <button id="createPostButton">Update Post</button>
     </form>
-    </a>
+
+    <form id="addComment">
+          <textarea id="commentText" placeholder="Add Your Thoughts"></textarea>
+          <button>Add Comment</button>
+    </form>
     </script>
 
+    <script type="text/template" id="explore">
+    <form id="explore">
+    <input type="text" id="exploreSearch" placeholder="explore by tags"></textarea>
+    <h2>explore by tags</h2>
+    <button id="explore">explore</button>
+    </form>
+    </script>
     <script src="scripts/vendor.js"></script>
     <script src="//www.parsecdn.com/js/parse-1.3.1.min.js"></script>
 

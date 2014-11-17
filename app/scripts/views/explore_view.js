@@ -17,11 +17,13 @@
       },
 
       render: function(){
+      this.$el.empty();
        this.$el.html(this.template)
        
       },
 
       exploreByTags: function(){
+
      query=  new Parse.Query(App.Models.blogPost);
         var tag= $('#exploreSearch').val();
       query.contains('tags', tag);

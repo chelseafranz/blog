@@ -30,15 +30,26 @@
 			title: '',
 			author: '',
 			tags: '',
-			content: ''
-		},
 
-
-		 initialize: function(){
-		 },
-
-		
+			content: '',
+			user: App.user,
+		}
 	})
+
+}());
+
+(function () {
+
+  App.Models.Comment = Parse.Object.extend({
+
+    className: 'Comment',
+
+    defaults: {
+      commentText: ''
+    }
+
+  });
+
 
 }());
 
@@ -81,6 +92,7 @@
     },
 
     render: function(){
+      this.$el.empty();
       this.$el.html(this.template);
     },
 
@@ -116,16 +128,19 @@
 	App.Views.editBlogPostView = Parse.View.extend({
 
 		events: {
-		'submit #editBlogpostForm' : 'editPost',
+
+		'submit #editBlogPostForm' : 'editPost',
+		'submit #addComment' : 'addComment',
+
 
 		},
 
-		template: $('#editPostTemp').html(),
+		template: _.template($('#editPostTemp').html()) ,
 
-		initialize: function(){
-			$('#welcomePage').empty();
-			console.log('edit post');
-
+		initialize: function(options){
+			this.options=options;
+			console.log(this.options.blogPost);
+			console.log('on edit post page');
 			this.render();
 
 			$('#blogPost').html(this.$el);
@@ -133,18 +148,65 @@
 		},
 
 		render: function (){
-		this.$el.html(this.template);
+
+		this.$el.empty();
+		$('#blogList').empty();
+		var temp = (this.options.blogPost).toJSON()
+		var hyper = this.template(temp)
+		this.$el.html(hyper);
+		//this.$el.html(this.template);
+
+		var commentTemplate =_.template($('#commentTemplate').html());
+		var comments_query = new Parse.Query(App.Models.Comment);
+		comments_query.equalTo('parent',this.options.blogPost);
+
+		this.$el.append('<h3>Comments<h3><ul class="comments"></ul>');
+
+		comments_query.find({
+			success: function(results){
+				_.each(results, function(comment) {
+					$('ul.comments').append(commentTemplate(comment.toJSON()));
+				})
+			}
+		})
+		},
+
+		addComment: function(a) {
+			a.preventDefault();
+
+			var comment = new App.Models.Comment({
+				commentText: $('#commentText').val(),
+				parent: this.options.blogPost
+			});
+
+			comment.save(null, {
+				success: function (){
+					console.log('commet');
+					App.router.navigate('welcomeView', { trigger: true });
+				}
+			});
+
+
 		},
 
 		editPost: function(e){
 			e.preventDefault();
-			console.log('edit');
+			console.log('start edit');
 
 			this.options.blogPost.set({
-				title: $('#blogTitle').val(),
-				content:$('#content').val(),
-				tags: $('#blogTags').val()
+				title: $('#updateblogTitle').val(),
+				content:$('#updatecontent').val(),
+				tags: $('#updateblogTags').val()
 			});
+
+			this.options.blogPost.save(null,{
+				success: function(){
+					console.log('successfully updated');
+					App.router.navigate('welcomeView', {trigger: true});
+
+				}
+				})
+
 		}
 
 	});
@@ -169,7 +231,8 @@ App.Views.homeView = Parse.View.extend({
 	},
 
 	render:function(){
-
+		$('#newUserForm').empty();
+		this.$el.empty();
         this.$el.html(this.template);
       },
 
@@ -188,7 +251,9 @@ App.Views.homeView = Parse.View.extend({
 
 		initialize: function(){
 			$('#loginForm').empty();
+			$('#blogPost').empty();
 			console.log('welcome page');
+			 //console.log(App.user.attributes.username);
 			this.render();
 			$('#welcomePage').html(this.$el);
 
@@ -196,19 +261,21 @@ App.Views.homeView = Parse.View.extend({
 		},
 
 		render: function(){
+			$('#blogPost').empty();
+			$('#blogList').empty();
 			this.$el.html(this.template)
 		},
 
 		logout: function(){
 			console.log('logout');
         Parse.User.logOut();
-        App.user= null, 
-       
+        App.user= null,
+
         App.router.navigate('', {trigger:true});
-        $('#welcomePage').empty(); 
+        $('#welcomePage').empty();
 		}
 
-		
+
 	});
 
 }());
@@ -233,7 +300,7 @@ App.Views.homeView = Parse.View.extend({
       },
 
       render: function(){
-
+        this.$el.empty();
         this.$el.html(this.template);
       },
 
@@ -284,7 +351,9 @@ App.Views.singlePost = Parse.View.extend({
 	},
 
 	render: function(){
+		this.$el.empty();
 		this.$el.html($('#postTemp').html());
+
 	},
 
 
@@ -296,7 +365,7 @@ App.Views.singlePost = Parse.View.extend({
         title: $('#blogTitle').val(),
         content: $('#content').val(),
 		tags: $('#blogTags').val(),
-        user: App.user
+        author: App.user.attributes.username,
       });
 
 			p.setACL(new Parse.ACL(App.user));
@@ -304,7 +373,7 @@ App.Views.singlePost = Parse.View.extend({
 			p.save(null, {
         success: function () {
           App.allBlogPosts.add(p);
-          $('#createBlogPostForm').empty();
+
           App.router.navigate('welcomeView', { trigger: true });
         }
       });
@@ -316,26 +385,87 @@ App.Views.singlePost = Parse.View.extend({
 
 }());
 
+(function(){
+
+	App.Views.exploreView= Parse.View.extend({
+		
+    events:{
+      'submit #explore' : 'exploreByTags'
+    },
+
+	template: $('#explore').html(),
+
+      initialize: function (options) {
+        console.log('explore page');
+        this.render();
+        $('#blogPost').html(this.$el);
+
+      
+      },
+
+      render: function(){
+      this.$el.empty();
+       this.$el.html(this.template)
+       
+      },
+
+      exploreByTags: function(){
+
+     query=  new Parse.Query(App.Models.blogPost);
+        var tag= $('#exploreSearch').val();
+      query.contains('tags', tag);
+      query.find({
+        success: function(results) {
+          console.log("Successfully retrieved " + results.length + " post.");
+        for (var i = 0; i < results.length; i++) { 
+          var object = results[i];
+          console.log(object.id + ' - ' + object.get('App.user.attributes.username'));
+          }
+          },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+          }
+          });
+
+      }
+      
+
+
+  })
+}());
 (function (){
 
   App.Views.blogPostsView = Parse.View.extend({
 
       el: '#blogList',
 
-
-
       template: _.template($('#allBlogPosts').html()),
 
       initialize: function (options) {
-
+          this.options= options;
         $('#welcomePage').empty();
         this.collection.on('sync', this.blogQuery, this);
         this.render();
 
+      query=  new Parse.Query(App.Models.blogPost);
+      query.contains('tags', 'tags');
+      query.find({
+        success: function(results) {
+          console.log("Successfully retrieved " + results.length + " post.");
+        for (var i = 0; i < results.length; i++) { 
+          var object = results[i];
+          console.log(object.id + ' - ' + object.get('App.user.attributes.username'));
+          }
+          },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+  }
+});
+
       },
 
       render: function(){
-
+        this.$el.empty();
         var self = this;
 
         this.collection.each( function (x) {
@@ -360,7 +490,10 @@ App.Views.singlePost = Parse.View.extend({
       'singlePost': 'postView',
       'blogPosts': 'blogPosts',
       'edit/:id': 'editBlogPost',
-      'logOut': 'logout'
+      'logOut': 'logout',
+
+      'explore': 'explore'
+
 
     },
 
@@ -396,8 +529,13 @@ App.Views.singlePost = Parse.View.extend({
     editBlogPost: function  (id){
       var b = App.allBlogPosts.get(id);
 
-     new App.Views.editBlogPostView(({ blogPost: b }));
+     new App.Views.editBlogPostView({ blogPost: b });
     },
+
+
+    explore: function(){
+      new App.Views.exploreView();
+    }
   
   })
 }());
@@ -417,6 +555,8 @@ Parse.initialize("WrDfLsxuougObGc7QHG1HAbWvDZG694tdg8gVQuS", "rMzyC9RkZOw29M69bL
         App.router = new App.Routers.AppRouter();
 
         Parse.history.start();
+
+        var query;
       });
 
       // App.updateUser = function(e){
