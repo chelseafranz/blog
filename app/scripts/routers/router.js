@@ -11,7 +11,9 @@
       'blogPosts': 'blogPosts',
       'edit/:id': 'editBlogPost',
       'logOut': 'logout',
+
       'explore': 'explore'
+
 
     },
 
@@ -44,11 +46,12 @@
       new App.Views.blogPostsView({ collection: App.allBlogPosts });
     },
 
-    editBlogPost: function(id){
+    editBlogPost: function  (id){
       var b = App.allBlogPosts.get(id);
-      console.log(b);
+
      new App.Views.editBlogPostView({ blogPost: b });
     },
+
 
     explore: function(){
       new App.Views.exploreView({collection: App.allBlogPosts})

@@ -2,7 +2,10 @@
 	App.Views.editBlogPostView = Parse.View.extend({
 
 		events: {
+
 		'submit #editBlogPostForm' : 'editPost',
+		'submit #addComment' : 'addComment',
+
 
 		},
 
@@ -19,9 +22,45 @@
 		},
 
 		render: function (){
+
 		this.$el.empty();
 		$('#blogList').empty();
-		this.$el.html(this.template((this.options.blogPost).toJSON()));
+		var temp = (this.options.blogPost).toJSON()
+		var hyper = this.template(temp)
+		this.$el.html(hyper);
+		//this.$el.html(this.template);
+
+		var commentTemplate =_.template($('#commentTemplate').html());
+		var comments_query = new Parse.Query(App.Models.Comment);
+		comments_query.equalTo('parent',this.options.blogPost);
+
+		this.$el.append('<h3>Comments<h3><ul class="comments"></ul>');
+
+		comments_query.find({
+			success: function(results){
+				_.each(results, function(comment) {
+					$('ul.comments').append(commentTemplate(comment.toJSON()));
+				})
+			}
+		})
+		},
+
+		addComment: function(a) {
+			a.preventDefault();
+
+			var comment = new App.Models.Comment({
+				commentText: $('#commentText').val(),
+				parent: this.options.blogPost
+			});
+
+			comment.save(null, {
+				success: function (){
+					console.log('commet');
+					App.router.navigate('welcomeView', { trigger: true });
+				}
+			});
+
+
 		},
 
 		editPost: function(e){
@@ -38,10 +77,10 @@
 				success: function(){
 					console.log('successfully updated');
 					App.router.navigate('welcomeView', {trigger: true});
-					
+
 				}
 				})
-			
+
 		}
 
 	});

@@ -10,6 +10,7 @@
 
 		initialize: function(){
 			$('#loginForm').empty();
+			$('#blogPost').empty();
 			console.log('welcome page');
 			 //console.log(App.user.attributes.username);
 			this.render();
@@ -27,13 +28,13 @@
 		logout: function(){
 			console.log('logout');
         Parse.User.logOut();
-        App.user= null, 
-       
+        App.user= null,
+
         App.router.navigate('', {trigger:true});
-        $('#welcomePage').empty(); 
+        $('#welcomePage').empty();
 		}
 
-		
+
 	});
 
 }());

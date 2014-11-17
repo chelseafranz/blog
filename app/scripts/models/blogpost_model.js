@@ -6,16 +6,10 @@
 			title: '',
 			author: '',
 			tags: '',
+
 			content: '',
 			user: App.user,
-		},
-
-
-		 initialize: function(){
-		 	console.log('new post added');
-		 },
-
-		
+		}
 	})
 
 }());
