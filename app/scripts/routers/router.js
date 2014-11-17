@@ -54,7 +54,7 @@
 
 
     explore: function(){
-      new App.Views.exploreView({collection: App.allBlogPosts})
+      new App.Views.exploreView();
     }
   
   })

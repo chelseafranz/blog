@@ -13,6 +13,8 @@ Parse.initialize("WrDfLsxuougObGc7QHG1HAbWvDZG694tdg8gVQuS", "rMzyC9RkZOw29M69bL
         App.router = new App.Routers.AppRouter();
 
         Parse.history.start();
+
+        var query;
       });
 
       // App.updateUser = function(e){
