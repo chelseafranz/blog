@@ -100,6 +100,10 @@
     </a>
     </script>
 
+    <script type="text/template" id="commentTemplate">
+      <li><%= commentText %></li>
+    </script>
+
     <script type="text/template" id="editPostTemp">
   <h2> Edit Post</h2>
 
@@ -110,6 +114,11 @@
         <button id="createPostButton">Update Post</button>
     </form>
     </a>
+    <form id="addComment">
+          <textarea id="commentText" placeholder="Add Your Thoughts"></textarea>
+          <button>Add Comment</button>
+        </form>
+
     </script>
 
     <!-- build:js scripts/vendor.js -->
@@ -135,6 +144,7 @@
         <!-- build:js scripts/main.js -->
         <script src="scripts/models/user_model.js"></script>
         <script src="scripts/models/blogpost_model.js"></script>
+        <script src="scripts/models/blog_comments.js"></script>
         <script src="scripts/collections/user_collection.js"></script>
         <script src="scripts/collections/allblogposts_collection.js"></script>
         <script src="scripts/views/login_user_view.js"></script>

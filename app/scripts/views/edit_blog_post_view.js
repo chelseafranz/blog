@@ -3,6 +3,7 @@
 
 		events: {
 		'submit #editBlogpostForm' : 'editPost',
+		'submit #addComment' : 'addComment',
 
 		},
 
@@ -20,6 +21,37 @@
 
 		render: function (){
 		this.$el.html(this.template);
+
+		var commentTemplate =_.template($('#commentTemplate').html());
+		var comments_query = new Parse.Query(App.Models.Comment);
+		comments_query.equalTo('parent',this.options.blogPost);
+
+		this.$el.append('<h3>Comments<h3><ul class="comments"></ul>');
+
+		comments_query.find({
+			success: function(results){
+				_.each(results, function(comment) {
+					$('ul.comments').append(commentTemplate(comment.toJSON()));
+				})
+			}
+		})
+		},
+
+		addComment: function(a) {
+			a.preventDefault();
+
+			var comment = new App.Models.Comment({
+				commentText: $('#commentText').val(),
+				parent: this.options.blogPost
+			});
+
+			comment.save(null, {
+				success: function (){
+					console.log('commet');
+					App.router.navigate('', {trigger: true});
+				}
+			});
+
 		},
 
 		editPost: function(e){
